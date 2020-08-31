@@ -35,13 +35,17 @@ export default function ButtonAppBar({ authenticated }) {
     <div className={classes.root}>
       <AppBar position='static'>
         <Toolbar>
-          <Typography variant='h6' className={classes.title}>
+          <Typography variant='h6' component='h1' className={classes.title}>
             <Link to='/' className={classes.link}>
               Super unique chat
             </Link>
           </Typography>
           {authenticated ? (
-            <Button color='inherit' onClick={() => signOut()}>
+            <Button
+              color='secondary'
+              variant='contained'
+              onClick={() => signOut()}
+            >
               Log out
             </Button>
           ) : (
