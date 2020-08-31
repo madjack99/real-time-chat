@@ -2,8 +2,26 @@ import React, { useState } from 'react';
 
 import { signInWithGoogle } from '../helpers/auth';
 
+import Typography from '@material-ui/core/Typography';
+import { makeStyles } from '@material-ui/core/styles';
+
+import googleIcon from './images/google-icon.svg';
+
+const useStyles = makeStyles({
+  loginPage: {
+    textAlign: 'center',
+  },
+  icon: {
+    '&:hover': {
+      cursor: 'pointer',
+      transform: 'scale(1.1)',
+    },
+  },
+});
+
 const LogIn = () => {
   const [error, setError] = useState(false);
+  const classes = useStyles();
 
   const handleSignIn = async () => {
     try {
@@ -14,9 +32,18 @@ const LogIn = () => {
   };
 
   return (
-    <div>
-      Please log in with Google, Log in
-      <button onClick={handleSignIn}>Sign in with Google</button>
+    <div className={classes.loginPage}>
+      <Typography variant='h2' component='h2' align='center' gutterBottom>
+        Click on Google icon to sign in
+      </Typography>
+      <img
+        src={googleIcon}
+        alt='google icon'
+        height='100'
+        className={classes.icon}
+        onClick={handleSignIn}
+      />
+      <br />
       {error && error}
     </div>
   );
