@@ -12,6 +12,9 @@ import PublicRoute from './hoc/PublicRoute';
 
 import { auth } from './services/firebase';
 
+import Container from '@material-ui/core/Container';
+import Paper from '@material-ui/core/Paper';
+
 import './app.style.css';
 
 function App() {
@@ -28,17 +31,19 @@ function App() {
     <Router>
       <Header authenticated={authenticated} />
       <Switch>
-        <Route exact path='/' component={Home} />
-        <PublicRoute
-          path='/login'
-          component={LogIn}
-          authenticated={authenticated}
-        />
-        <PrivateRoute
-          path='/chat'
-          component={Chat}
-          authenticated={authenticated}
-        />
+        <Container maxWidth='sm'>
+          <Route exact path='/' component={Home} />
+          <PublicRoute
+            path='/login'
+            component={LogIn}
+            authenticated={authenticated}
+          />
+          <PrivateRoute
+            path='/chat'
+            component={Chat}
+            authenticated={authenticated}
+          />
+        </Container>
       </Switch>
     </Router>
   );
