@@ -35,6 +35,7 @@ const Chat = () => {
   const [user, setUser] = useState(auth().currentUser);
   const [chats, setChats] = useState([]);
   const [readError, setReadError] = useState(null);
+  const [writeError, setWriteError] = useState(null);
   const [inputValue, setInputValue] = useState('');
 
   const classes = useStyles();
@@ -63,9 +64,21 @@ const Chat = () => {
     setInputValue(e.currentTarget.value);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(inputValue);
+    setWriteError(null);
+
+    try {
+      await db.ref('my-super-unique-chat').push({
+        content: `${user.displayName}: ${inputValue}`,
+        timestamp: Date.now(),
+        uid: user.uid,
+      });
+
+      setInputValue('');
+    } catch (error) {
+      setWriteError(error.message);
+    }
   };
 
   return (
@@ -104,6 +117,9 @@ const Chat = () => {
           Send
         </Button>
       </form>
+      <Typography variant='body1' align='center' color='secondary'>
+        {writeError && writeError}
+      </Typography>
     </>
   );
 };
