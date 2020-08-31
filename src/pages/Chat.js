@@ -16,12 +16,14 @@ const useStyles = makeStyles({
     margin: '20px 0 0',
   },
   chatWindow: {
+    boxSizing: 'border-box',
     width: 300,
     height: 300,
     maxHeight: 300,
+    padding: 15,
     margin: '20px auto 0',
-    // overflow: 'scroll',
-    background: 'darkgrey',
+    overflow: 'auto',
+    background: 'lightcyan',
   },
   form: {
     display: 'flex',
@@ -47,9 +49,7 @@ const Chat = () => {
       db.ref('my-super-unique-chat').on('value', (snapshot) => {
         const updatedChats = [];
 
-        console.log(snapshot);
         snapshot.forEach((snap) => {
-          console.log(snap);
           updatedChats.push(snap.val());
         });
 
@@ -100,6 +100,9 @@ const Chat = () => {
         className={classes.chatUserTitle}
       >
         You are signed in as: {user.displayName}
+      </Typography>
+      <Typography variant='body1' align='center' color='secondary'>
+        {readError && readError}
       </Typography>
       <Paper elevation={3} className={classes.chatWindow}>
         {chats.map((chat) => (
