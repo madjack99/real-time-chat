@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
+import Header from './components/layout/Header';
+
 import Home from './pages/Home';
 import LogIn from './pages/LogIn';
 import Chat from './pages/Chat';
@@ -24,6 +26,7 @@ function App() {
 
   return (
     <Router>
+      <Header authenticated={authenticated} />
       <Switch>
         <Route exact path='/' component={Home} />
         <PublicRoute

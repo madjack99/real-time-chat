@@ -5,6 +5,10 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 
+import { Link } from 'react-router-dom';
+
+import { signOut } from '../../helpers/auth';
+
 const useStyles = makeStyles((theme) =>
   createStyles({
     root: {
@@ -16,10 +20,14 @@ const useStyles = makeStyles((theme) =>
     title: {
       flexGrow: 1,
     },
+    link: {
+      color: 'inherit',
+      textDecoration: 'none',
+    },
   })
 );
 
-export default function ButtonAppBar() {
+export default function ButtonAppBar({ authenticated }) {
   const classes = useStyles();
 
   return (
@@ -27,9 +35,21 @@ export default function ButtonAppBar() {
       <AppBar position='static'>
         <Toolbar>
           <Typography variant='h6' className={classes.title}>
-            Super unique chat
+            <Link to='/' className={classes.link}>
+              Super unique chat
+            </Link>
           </Typography>
-          <Button color='inherit'>Login</Button>
+          {authenticated ? (
+            <Button color='inherit' onClick={() => signOut()}>
+              Log out
+            </Button>
+          ) : (
+            <Button color='inherit'>
+              <Link to='/login' className={classes.link}>
+                Log in
+              </Link>
+            </Button>
+          )}
         </Toolbar>
       </AppBar>
     </div>

@@ -1,13 +1,7 @@
 import React from 'react';
-import { signOut } from '../helpers/auth';
 
 const Chat = () => {
-  return (
-    <div>
-      Chat
-      <button onClick={() => signOut()}>Sign out</button>
-    </div>
-  );
+  return <div>Chat</div>;
 };
 
 export default Chat;
