@@ -10,6 +10,8 @@ import PublicRoute from './hoc/PublicRoute';
 
 import { auth } from './services/firebase';
 
+import './app.style.css';
+
 function App() {
   const [authenticated, setAuthenticated] = useState(false);
 
