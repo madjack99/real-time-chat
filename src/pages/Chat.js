@@ -143,9 +143,6 @@ const Chat = () => {
         {readError && readError}
       </Typography>
       <Paper elevation={3} className={classes.chatWindow}>
-        {/* {chats.map((chat) => (
-          <p key={chat.timestamp}>{chat.content}</p>
-        ))} */}
         {drawMessages()}
       </Paper>
       <form className={classes.form} onSubmit={handleSubmit}>
