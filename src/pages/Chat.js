@@ -7,6 +7,11 @@ import Typography from '@material-ui/core/Typography';
 import Paper from '@material-ui/core/Paper';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
+import blue from '@material-ui/core/colors/blue';
+import green from '@material-ui/core/colors/green';
+
+const guestMessageColor = blue[700];
+const myMessageColor = green[500];
 
 const useStyles = makeStyles({
   chatTitle: {
@@ -23,7 +28,7 @@ const useStyles = makeStyles({
     padding: 15,
     margin: '20px auto 0',
     overflow: 'auto',
-    background: 'lightcyan',
+    background: '#ffffff',
   },
   form: {
     display: 'flex',
@@ -31,10 +36,23 @@ const useStyles = makeStyles({
     width: 300,
     margin: '20px auto',
   },
+  message: {
+    padding: 10,
+    borderRadius: 10,
+    wordBreak: 'break-all',
+  },
+  myMessage: {
+    background: myMessageColor,
+    color: '#ffffff',
+  },
+  guestMessage: {
+    background: guestMessageColor,
+    color: '#ffffff',
+  },
 });
 
 const Chat = () => {
-  const [user, setUser] = useState(auth().currentUser);
+  const [user] = useState(auth().currentUser);
   const [chats, setChats] = useState([]);
   const [readError, setReadError] = useState(null);
   const [writeError, setWriteError] = useState(null);
@@ -81,6 +99,26 @@ const Chat = () => {
     }
   };
 
+  const drawMessages = () => {
+    return chats.map((chat) =>
+      chat.uid === user.uid ? (
+        <p
+          key={chat.timestamp}
+          className={`${classes.myMessage} ${classes.message}`}
+        >
+          {chat.content}
+        </p>
+      ) : (
+        <p
+          key={chat.timestamp}
+          className={`${classes.guestMessage} ${classes.message}`}
+        >
+          {chat.content}
+        </p>
+      )
+    );
+  };
+
   return (
     <>
       <Typography
@@ -105,9 +143,10 @@ const Chat = () => {
         {readError && readError}
       </Typography>
       <Paper elevation={3} className={classes.chatWindow}>
-        {chats.map((chat) => (
+        {/* {chats.map((chat) => (
           <p key={chat.timestamp}>{chat.content}</p>
-        ))}
+        ))} */}
+        {drawMessages()}
       </Paper>
       <form className={classes.form} onSubmit={handleSubmit}>
         <TextField
