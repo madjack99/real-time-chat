@@ -19,6 +19,9 @@ const useStyles = makeStyles({
   },
 });
 
+/**
+ * Create Log in page
+ */
 const LogIn = () => {
   const [error, setError] = useState(false);
   const classes = useStyles();

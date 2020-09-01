@@ -28,7 +28,12 @@ const useStyles = makeStyles((theme) =>
   })
 );
 
-export default function ButtonAppBar({ authenticated }) {
+/**
+ * Application Header
+ * @param {boolean} authenticated - indicates whether a user is logged in or not
+ */
+
+export default function Header({ authenticated }) {
   const classes = useStyles();
 
   return (

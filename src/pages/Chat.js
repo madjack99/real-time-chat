@@ -51,6 +51,10 @@ const useStyles = makeStyles({
   },
 });
 
+/**
+ * Create chat page where subscription to the firesbase realtime
+ * database is performed to track new messages in real time
+ */
 const Chat = () => {
   const [user] = useState(auth().currentUser);
   const [chats, setChats] = useState([]);

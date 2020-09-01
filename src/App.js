@@ -14,6 +14,10 @@ import { auth } from './services/firebase';
 
 import './app.style.css';
 
+/**
+ * App handles routes and subscribes to firebase to track authentication
+ * state changes of users
+ */
 function App() {
   const [authenticated, setAuthenticated] = useState(false);
 

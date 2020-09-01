@@ -19,6 +19,9 @@ const useStyles = makeStyles({
   },
 });
 
+/**
+ * Create Home page
+ */
 const Home = () => {
   const classes = useStyles();
 
