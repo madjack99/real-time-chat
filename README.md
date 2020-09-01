@@ -8,4 +8,4 @@ added.
 
 The app allows registered users to join the real time chat to send and receive messages in real time.
 
-    [Link to live website](my-super-unique-chat.web.app)
+[Link to live website](my-super-unique-chat.web.app)
